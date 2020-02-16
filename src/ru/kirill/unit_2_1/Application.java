@@ -1,8 +1,20 @@
 package ru.kirill.unit_2_1;
 
+import ru.kirill.unit_2_1.farm.Animal;
+import ru.kirill.unit_2_1.farm.Horse;
+import ru.kirill.unit_2_1.farm.Pig;
+import ru.kirill.unit_2_1.farm.Sheep;
+import ru.kirill.unit_2_1.farm.birds.Chick;
+import ru.kirill.unit_2_1.farm.birds.Duck;
+
 public class Application {
 
     public static void main(String[] args) {
+        classExample();
+        farmExamples();
+    }
+
+    public static void classExample() {
         Person myFirstPerson = new Person("Kirill", "Kolosov");
 
         /*myFirstPerson.name = "Kirill";
@@ -56,7 +68,6 @@ public class Application {
 
         System.out.println(person1.sayYourName());
         System.out.println(person2.sayYourName());
-
     }
 
     public static void printPerson(Person personToPrint) {
@@ -72,6 +83,40 @@ public class Application {
             int int2 = 100;
         } else {
             int1 = 50;
+        }
+    }
+
+    public static void farmExamples() {
+        Pig pig = new Pig();
+        Duck duck = new Duck();
+
+        Animal[] animals = new Animal[5];
+        animals[0] = new Pig();
+        animals[1] = new Horse();
+        animals[2] = new Sheep();
+        animals[3] = new Duck();
+        animals[4] = new Chick();
+
+        for(int i = 0; i < animals.length; i++) {
+            animals[i].eat(10);
+            animals[i].step();
+
+            if(animals[i] instanceof Sheep) {
+                Sheep sheep = (Sheep) animals[i];
+                sheep.cut();
+                System.out.println("WOW the sheep is here!");
+            }
+        }
+
+        System.out.println("Stamps:");
+        printHerdStamps(animals);
+
+    }
+
+
+    public static void printHerdStamps(Animal[] animals) {
+        for(int i = 0; i < animals.length; i++) {
+            System.out.println(animals[i].getStamp());
         }
     }
 
